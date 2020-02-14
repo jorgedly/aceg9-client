@@ -10,14 +10,18 @@
 
 <body>
     <h1>ASCII a Morse</h1>
-    <textarea id="txtEntrada1" cols="30" rows="10"></textarea>
-    <button onclick="algo()">Enviar dato</button>
+    <textarea id="txtEntrada1" cols="30" rows="10">prueba</textarea>
+    <br>
+    <button onclick="algo()">Enviar</button>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-        const url = 'https://aceg9-api.herokuapp.com/';
+        const url = 'http://localhost:3000/modo1';
         function algo() {
-            axios.get(url).
-                then(data => console.log(data)).
+            const texto = document.getElementById('txtEntrada1').value.toUpperCase();
+            axios.post(url, {
+                texto
+            }).
+                then(data => console.log(data.data)).
                 catch(err => console.log(err));
         }
     </script>
